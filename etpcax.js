@@ -13,7 +13,7 @@ class Pos {
 }
 
 class ETPCA {
-	constructor() {
+	constructor(ruleString) {
 		this.state = new Map();
 	}
 
@@ -75,14 +75,14 @@ function draw(ca, ctx) {
 						}
 						if ((cellState & 2) !== 0) {
 							ctx.beginPath();
-							ctx.arc(0.5 + 0.5, 0.722, 0.08, 0, 2*Math.PI); // 0.5/sqrt(3) /2
+							ctx.arc(0.5 + 1 - 0.375, 0.505, 0.08, 0, 2*Math.PI); // 0.5/sqrt(3) /2
 							ctx.fill();
 							ctx.closePath();
 							ctx.fill();
 						}
 						if ((cellState & 4) !== 0) {
 							ctx.beginPath();
-							ctx.arc(0.5 + 1 - 0.375, 0.505, 0.08, 0, 2*Math.PI); // 0.5/sqrt(3) /2
+							ctx.arc(0.5 + 0.5, 0.722, 0.08, 0, 2*Math.PI); // 0.5/sqrt(3) /2
 							ctx.fill();
 							ctx.closePath();
 							ctx.fill();
@@ -120,35 +120,40 @@ function draw(ca, ctx) {
 
 class ExplorerApp {
 	constructor() {
-		const ca = new ETPCA();
+		this.ca = new ETPCA('0000');
 
 		const canvas = document.getElementById('ca_canvas');
 		const ctx = canvas.getContext('2d');
-		draw(ca, ctx);
+		draw(this.ca, ctx);
 
+		const app = this;
         this.vm = new Vue({
             el: '#vue_menu',
             data: {
             },
             methods: {
 				onClickReset: function() {
-					ca.clear();
-					draw(ca, ctx);
+					app.ca.clear();
+					draw(app.ca, ctx);
 				},
 				onClickRandomize: function(n) {
 					for (let y = 0; y < n; y++) {
 						for (let x = 0; x < n; x++) {
 							for (const d of [false, true]) {
 								const p = new Pos(x, y, d);
-								ca.setCell(p, Math.floor(Math.random() * 8));
+								app.ca.setCell(p, Math.floor(Math.random() * 8));
 							}
 						}
 					}
-					draw(ca, ctx);
+					draw(app.ca, ctx);
 				},
 				onClickStep: function() {
-					ca.step();
-					draw(ca, ctx);
+					app.ca.step();
+					draw(app.ca, ctx);
+				},
+				onChangeRuleString: function(ev) {
+					app.ca = new ETPCA(ev.target.value);
+					draw(app.ca, ctx);
 				},
             },
             computed: {
