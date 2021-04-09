@@ -1,27 +1,26 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Elementary Triangular Partitioned Cellular Automata Explorer</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<script src="jquery-2.1.0.js"></script>
-		<script src="jquery.mousewheel.js"></script>
-		<script src="underscore.js"></script>
-		<script src="backbone.js"></script>
-	</head>
-	<body>
+
+<head>
+	<title>Elementary Triangular Partitioned Cellular Automata Explorer</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
 	<div class="container-fluid">
 		<div class="page-header">
 			<h1>Elementary Triangular Partitioned Cellular Automata Explorer
-			<small style="float: right"><a href="https://github.com/xanxys/etpcax"><img src="GitHub-Mark-32px.png" width="32" height="32" alt="github"/></a></small></h1>
+				<small style="float: right"><a href="https://github.com/xanxys/etpcax"><img src="GitHub-Mark-32px.png" width="32" height="32" alt="github" /></a></small>
+			</h1>
 		</div>
 
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3" id="vue_menu">
 				<div class="panel panel-default">
 					<div class="panel-heading">Rule</div>
 
-					 <div class="panel-body">
-					 	<div class="form-group">
+					<div class="panel-body">
+						<div class="form-group">
 							<input id="ui_rule" type="text" class="form-control" value="0347">
 						</div>
 					</div>
@@ -30,26 +29,25 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Control</div>
 
-					 <div class="panel-body">
-						<button>Reset</button>
-						<button>Randomize [0,100)^2</button>
-						<button>Step</button>
+					<div class="panel-body">
+						<button v-click="onClickReset">Reset</button>
+						<button v-click="onClickRandomize(100)">Randomize [0,100)^2</button>
+						<button v-click="onClickStep">Step</button>
 
 
 					</div>
 				</div>
-
 			</div>
 
-			<div id="col_eca" class="col-md-9">
-				<canvas id="eca" class="panel panel-default"></canvas>
+			<div class="col-md-9">
+				<canvas id="ca_canvas" class="panel panel-default" width="600" height="600"></canvas>
 			</div>
 		</div>
-		</div>
-		<script src="serialize.js"></script>
-		<script src="eca_naive.js"></script>
-		<script src="hashcell.js"></script>
-		<script src="hashcell_view.js"></script>
-		<script src="etpcax.js"></script>
-	</body>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"
+		integrity="sha512-BKbSR+cfyxLdMAsE0naLReFSLg8/pjbgfxHh/k/kUC82Hy7r6HtR5hLhobaln2gcTvzkyyehrdREdjpsQwy2Jw=="
+		crossorigin="anonymous"></script>
+	<script src="etpcax.js"></script>
+</body>
+
 </html>
