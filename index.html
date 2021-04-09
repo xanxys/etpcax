@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Elementary Cellular Automata Explorer</title>
+		<title>Elementary Triangular Partitioned Cellular Automata Explorer</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<script src="jquery-2.1.0.js"></script>
 		<script src="jquery.mousewheel.js"></script>
@@ -11,8 +11,8 @@
 	<body>
 	<div class="container-fluid">
 		<div class="page-header">
-			<h1>Elementary Cellular Automata Explorer
-			<small style="float: right"><a href="https://github.com/xanxys/rule110/tree/ecax"><img src="GitHub-Mark-32px.png" width="32" height="32" alt="github"/></a></small></h1>
+			<h1>Elementary Triangular Partitioned Cellular Automata Explorer
+			<small style="float: right"><a href="https://github.com/xanxys/etpcax"><img src="GitHub-Mark-32px.png" width="32" height="32" alt="github"/></a></small></h1>
 		</div>
 
 		<div class="row">
@@ -22,33 +22,23 @@
 
 					 <div class="panel-body">
 					 	<div class="form-group">
-							<input id="ui_rule" type="text" class="form-control" value="110">
+							<input id="ui_rule" type="text" class="form-control" value="0347">
 						</div>
 					</div>
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading">Initial State</div>
+					<div class="panel-heading">Control</div>
 
 					 <div class="panel-body">
-						Left Periodic Part
-						<textarea id="ui_initial_left" class="form-control" rows="1">0</textarea>
+						<button>Reset</button>
+						<button>Randomize [0,100)^2</button>
+						<button>Step</button>
 
-						Center Part
-						<textarea id="ui_initial_center" class="form-control" rows="1">1</textarea>
 
-						Right Periodic Part
-						<textarea id="ui_initial_right" class="form-control" rows="1">0</textarea>
 					</div>
 				</div>
 
-				<!--
-				<div class="panel panel-default">
-					<div class="panel-heading">Ether</div>
-					<div id="ether">
-					</div>
-				</div>
-				-->
 			</div>
 
 			<div id="col_eca" class="col-md-9">
@@ -60,6 +50,6 @@
 		<script src="eca_naive.js"></script>
 		<script src="hashcell.js"></script>
 		<script src="hashcell_view.js"></script>
-		<script src="ecax.js"></script>
+		<script src="etpcax.js"></script>
 	</body>
 </html>
