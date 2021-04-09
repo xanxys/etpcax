@@ -15,13 +15,27 @@ class Pos {
 class ETPCA {
 	constructor() {
 		this.state = new Map();
-		this.state.set(new Pos(0, 0, false).toKey(), 0b111);
-		this.state.set(new Pos(0, 0, true).toKey(), 0b111);
+	}
+
+	clear() {
+		this.state = new Map();
+	}
+
+	setCell(pos, cellState) {
+		this.state.set(pos.toKey(), cellState);
+	}
+
+	getCell(pos) {
+		const st= this.state.get(pos.toKey());
+		return st === undefined ? 0 : st;
 	}
 }
 
 function draw(ca, ctx) {
-	const cellHeight = Math.sqrt(3) / 2;	
+	ctx.fillStyle = 'white';
+	ctx.fillRect(0, 0, 600, 600); // TODO: get sizes
+
+	const cellHeight = Math.sqrt(3) / 2;
 
 	ctx.save();
 	ctx.scale(100, 100);
@@ -97,16 +111,7 @@ function draw(ca, ctx) {
 					}
 				}
 
-
-
 				ctx.restore();
-
-
-
-
-
-
-
 			}
 		}
 	}
@@ -127,11 +132,18 @@ class ExplorerApp {
             },
             methods: {
 				onClickReset: function() {
-					ca = new ETPCA();
+					ca.clear();
 					draw(ca, ctx);
 				},
 				onClickRandomize: function(n) {
-					// TODO: randomize
+					for (let y = 0; y < n; y++) {
+						for (let x = 0; x < n; x++) {
+							for (const d of [false, true]) {
+								const p = new Pos(x, y, d);
+								ca.setCell(p, Math.floor(Math.random() * 8));
+							}
+						}
+					}
 					draw(ca, ctx);
 				},
 				onClickStep: function() {
