@@ -32,8 +32,8 @@ function draw(ca, ctx) {
 				ctx.translate(x + 0.5 * y, y * cellHeight);
 
 				// draw cell
-				ctx.strokeStyle = 'black';
-				ctx.lineWidth = 0.05;
+				ctx.strokeStyle = '#444';
+				ctx.lineWidth = 0.025;
 				ctx.beginPath();
 				if (d) {
 					ctx.moveTo(1, 0);
@@ -51,7 +51,7 @@ function draw(ca, ctx) {
 				const cellState = ca.state.get(new Pos(x, y, d).toKey());
 				
 				if (cellState !== undefined) {
-					console.log(cellState);
+					ctx.fillStyle = '#444';
 					if (d) {
 						if ((cellState & 1) !== 0) {
 							ctx.beginPath();
